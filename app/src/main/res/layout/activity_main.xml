@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -27,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:onClick="patch"
-            android:layout_margin="@dimen/appbar_padding_top"
+            android:layout_margin="8dp"
             android:text="PATCH" />
 
         <TextView
@@ -36,8 +34,8 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical|horizontal"
             android:scrollHorizontally="true"
-            android:padding="@dimen/appbar_padding_top"
+            android:padding="8dp"
             android:text="Welcome in Android Auto Phenotype Patcher :)\nRemember to thank Jen94 for this magic SQL commands!"
             app:layout_constraintTop_toBottomOf="@+id/patch_button" />
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
