@@ -6,9 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.apps_list:
                 Intent intent = new Intent(this, AppsList.class);
                 this.startActivity(intent);
-            break;
+                break;
 
             case R.id.copy:
                 ClipboardManager clipboard = (ClipboardManager)
@@ -51,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
                 TextView textView = findViewById(R.id.logs);
                 ClipData clip = ClipData.newPlainText("logs", textView.getText());
                 clipboard.setPrimaryClip(clip);
-            break;
+                break;
 
             case R.id.reboot:
                 DialogFragment rebootDialog = new RebootDialog();
                 rebootDialog.show(getSupportFragmentManager(), "RebootDialog");
-            break;
+                break;
 
             case R.id.trigger_manager:
                 copyAssets();
