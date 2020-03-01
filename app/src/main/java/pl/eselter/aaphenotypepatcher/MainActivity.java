@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.copy:
-                ClipboardManager clipboard = (ClipboardManager)
-                        getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager clipboard =
+                        (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 TextView textView = findViewById(R.id.logs);
                 ClipData clip = ClipData.newPlainText("logs", textView.getText());
                 clipboard.setPrimaryClip(clip);
@@ -71,9 +71,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu( Menu menu )
-    {
-        getMenuInflater().inflate( R.menu.menu, menu );
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -83,12 +82,14 @@ public class MainActivity extends AppCompatActivity {
         logs.setMovementMethod(new ScrollingMovementMethod());
         logs.setText(null);
 
-        SharedPreferences appsListPref = getApplicationContext().getSharedPreferences("appsListPref", 0);
+        SharedPreferences appsListPref =
+                getApplicationContext().getSharedPreferences("appsListPref", 0);
         Map<String, ?> allEntries = appsListPref.getAll();
         if (allEntries.isEmpty()) {
             Intent intent = new Intent(this, AppsList.class);
             this.startActivity(intent);
-            Toast.makeText(getApplicationContext(), "Choose apps to whitelist.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Choose apps to whitelist.", Toast.LENGTH_LONG)
+                    .show();
         } else {
             logs.append("--  Apps which will be added to whitelist: --\n");
             String whiteListString = "";
@@ -310,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
         StreamLogs streamLogs = new StreamLogs();
         streamLogs.setOutputStreamLog(cmd);
 
-        try{
+        try {
             Process su = Runtime.getRuntime().exec("su");
             outputStream = new DataOutputStream(su.getOutputStream());
             inputStream = su.getInputStream();
@@ -328,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
             }
             streamLogs.setInputStreamLog(readFully(inputStream));
             streamLogs.setErrorStreamLog(readFully(errorStream));
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -370,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
                 in.close();
                 out.flush();
                 out.close();
-            } catch(IOException e) {
+            } catch (IOException e) {
                 Log.e("eselter", "Failed to copy asset file: sqlite3", e);
             }
         }
@@ -382,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
     private void copyFile(InputStream in, OutputStream out) throws IOException {
         byte[] buffer = new byte[1024];
         int read;
-        while((read = in.read(buffer)) != -1){
+        while ((read = in.read(buffer)) != -1) {
             out.write(buffer, 0, read);
         }
     }

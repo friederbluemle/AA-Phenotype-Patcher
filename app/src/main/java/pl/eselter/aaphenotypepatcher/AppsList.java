@@ -38,18 +38,27 @@ public class AppsList extends AppCompatActivity {
 
         ArrayList<AppInfo> appsList = new ArrayList<>();
 
-        SharedPreferences appsListPref = getApplicationContext().getSharedPreferences("appsListPref", 0);
+        SharedPreferences appsListPref =
+                getApplicationContext().getSharedPreferences("appsListPref", 0);
         Map<String, ?> allEntries = appsListPref.getAll();
 
         for (ApplicationInfo packageInfo : packages) {
             if (allEntries.containsKey(packageInfo.packageName)) {
-                appsList.add(new AppInfo(packageInfo.loadLabel(getPackageManager()).toString(), packageInfo.packageName, true));
+                appsList.add(
+                        new AppInfo(
+                                packageInfo.loadLabel(getPackageManager()).toString(),
+                                packageInfo.packageName,
+                                true));
                 allEntries.remove(packageInfo.packageName);
             } else {
-                appsList.add(new AppInfo(packageInfo.loadLabel(getPackageManager()).toString(), packageInfo.packageName, false));
+                appsList.add(
+                        new AppInfo(
+                                packageInfo.loadLabel(getPackageManager()).toString(),
+                                packageInfo.packageName,
+                                false));
             }
         }
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()){
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             appsList.add(new AppInfo(entry.getValue().toString(), entry.getKey(), true));
         }
 

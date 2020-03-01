@@ -32,7 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public MyAdapter(ArrayList<AppInfo> pAppsInfo, RecyclerView pRecyclerView){
+    public MyAdapter(ArrayList<AppInfo> pAppsInfo, RecyclerView pRecyclerView) {
         mAppInfo = pAppsInfo;
         mRecyclerView = pRecyclerView;
         setHasStableIds(true);
@@ -40,16 +40,18 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.app_info_layout, viewGroup, false);
+        View view =
+                LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.app_info_layout, viewGroup, false);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickSaveAppsWhiteList(v, i);
-                notifyItemChanged(i);
-            }
-        });
+        view.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onClickSaveAppsWhiteList(v, i);
+                        notifyItemChanged(i);
+                    }
+                });
 
         return new MyViewHolder(view);
     }
@@ -61,29 +63,40 @@ public class MyAdapter extends RecyclerView.Adapter {
         ((MyViewHolder) viewHolder).mPackageName.setText(appInfo.getPackageName());
         ((MyViewHolder) viewHolder).mCheckboxApp.setChecked(appInfo.getIsChecked());
 
-        ((MyViewHolder) viewHolder).mCheckboxApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("eselter", "Clicked checkboc: " + i);
-                onClickSaveAppsWhiteList(v, i);
-                notifyItemChanged(i);
-            }
-        });
+        ((MyViewHolder) viewHolder)
+                .mCheckboxApp.setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Log.d("eselter", "Clicked checkboc: " + i);
+                                onClickSaveAppsWhiteList(v, i);
+                                notifyItemChanged(i);
+                            }
+                        });
     }
 
-    private void onClickSaveAppsWhiteList (View v, int position) {
+    private void onClickSaveAppsWhiteList(View v, int position) {
         SharedPreferences appsListPref = v.getContext().getSharedPreferences("appsListPref", 0);
         SharedPreferences.Editor editor = appsListPref.edit();
         if (mAppInfo.get(position).getIsChecked()) {
             editor.remove(mAppInfo.get(position).getPackageName());
             editor.commit();
             mAppInfo.get(position).setIsChecked(false);
-            Toast.makeText(v.getContext(), "Removed: " + mAppInfo.get(position).getPackageName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                            v.getContext(),
+                            "Removed: " + mAppInfo.get(position).getPackageName(),
+                            Toast.LENGTH_SHORT)
+                    .show();
         } else {
-            editor.putString(mAppInfo.get(position).getPackageName(), mAppInfo.get(position).getName());
+            editor.putString(
+                    mAppInfo.get(position).getPackageName(), mAppInfo.get(position).getName());
             editor.commit();
             mAppInfo.get(position).setIsChecked(true);
-            Toast.makeText(v.getContext(), "Added: " + mAppInfo.get(position).getPackageName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                            v.getContext(),
+                            "Added: " + mAppInfo.get(position).getPackageName(),
+                            Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 

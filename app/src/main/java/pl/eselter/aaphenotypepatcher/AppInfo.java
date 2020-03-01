@@ -33,7 +33,7 @@ public class AppInfo implements Comparable<AppInfo> {
         return isChecked;
     }
 
-    public void setIsChecked (boolean isChecked) {
+    public void setIsChecked(boolean isChecked) {
         this.isChecked = isChecked;
     }
 

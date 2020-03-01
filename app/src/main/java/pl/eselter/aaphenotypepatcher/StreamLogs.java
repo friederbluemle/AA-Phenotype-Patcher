@@ -5,28 +5,21 @@ public class StreamLogs {
     private String errorStreamLog;
     private String outputStreamLog;
 
-    public StreamLogs() {
-    }
+    public StreamLogs() {}
 
     public String getInputStreamLog() {
-        if (inputStreamLog == null)
-            return "";
-        else
-            return inputStreamLog.trim();
+        if (inputStreamLog == null) return "";
+        else return inputStreamLog.trim();
     }
 
     public String getErrorStreamLog() {
-        if (errorStreamLog == null)
-            return "";
-        else
-            return errorStreamLog.trim();
+        if (errorStreamLog == null) return "";
+        else return errorStreamLog.trim();
     }
 
     public String getOutputStreamLog() {
-        if (outputStreamLog == null)
-            return "";
-        else
-            return outputStreamLog.trim();
+        if (outputStreamLog == null) return "";
+        else return outputStreamLog.trim();
     }
 
     public void setInputStreamLog(String inputStreamLog) {
